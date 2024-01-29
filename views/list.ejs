@@ -1,0 +1,46 @@
+<%- include('header'); %>
+  <body class="">
+    <div class="main text-white text-center mt-9 text-3xl w-1/4 mx-auto">
+      <h1 class="my-7"><%= thisDay %></h1>
+
+      <div class="items-container text-left pl-7 text-2xl mx-auto">
+        <table class="w-full">
+          <form action="/delete" method="post">
+            <input type="hidden" name="listType" value="<%= thisDay %>">
+            <% for (let i=0; i < newItem.length; i++) {%>
+              <tr class="border border-white">
+                <li class="my-3 border-b">
+                  <input
+                    type="checkbox"
+                    class="ms-2 text-sm font-medium text-gray-900 mr-3" 
+                    onChange="this.form.submit()"
+                    name="checkedItem"
+                    value="<%= newItem[i]._id %>"
+                    id="item"
+                  />
+                  <p class="inline"><%= newItem[i].name %></p>
+                </li>
+              </tr>
+              <% } %>
+          </form>
+        </table>
+      </div>
+
+      <form action="/" method="post">
+        <input
+          type="text"
+          name="itemName"
+          id="itemName"
+          placeholder="Add Item"
+          autocomplete="off" style="width: 93%;" autofocus
+          class="h-10 text-base p-4 ml-6 text-gray-900 placeholder-gray-900 border border-blue-300 rounded-lg bg-blue-300 focus:ring-blue-500 focus:border-blue-500"
+        />
+        <button
+          type="submit" name="listType" value=<%= thisDay %> style="bottom: 42px; left: 153px;"
+          class="text-white relative bg-blue-700 hover:bg-blue-800 rounded-md focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium px-4 text-xl py-1 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+        >
+          +
+        </button>
+      </form>
+    </div>
+<%- include('footer'); %>
